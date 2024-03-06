@@ -1,5 +1,5 @@
 # Python_Poc_Self_Study
-The road to self-study with a red asshole
+The road to self-study python poc
 # 参考和致谢
 ```
 https://blubiu.github.io/2019/05/Python%E4%BB%8E0%E5%88%B0POC%E7%BC%96%E5%86%99-%E5%9F%BA%E7%A1%80/
