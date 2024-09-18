@@ -2,7 +2,7 @@
 
 Python 3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)] on win32
 
-参考和致谢：
+References：
 
 ```html
 https://blubiu.github.io/2019/05/Python%E4%BB%8E0%E5%88%B0POC%E7%BC%96%E5%86%99-%E5%9F%BA%E7%A1%80/
