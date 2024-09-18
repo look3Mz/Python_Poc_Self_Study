@@ -1,6 +1,6 @@
 # Python_Poc_Self_Study
 The road to self-study python poc
-# 参考和致谢
+# References
 ```
 https://blubiu.github.io/2019/05/Python%E4%BB%8E0%E5%88%B0POC%E7%BC%96%E5%86%99-%E5%9F%BA%E7%A1%80/
 https://xz.aliyun.com/t/12555?time__1311=mqmhD50KBK7K4iqGNDQbiQd84WqEpCrQDxoD&alichlgref=https%3A%2F%2Fwww.google.com%2F#toc-13
